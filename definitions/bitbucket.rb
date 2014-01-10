@@ -1,8 +1,4 @@
-# reload: Reload monit so it notices the new service.  :delayed (default) or :immediately.
-# action: :enable To create the monitoring config (default), or :disable to remove it.
-# variables: Hash of instance variables to pass to the ERB template
-# template_cookbook: the cookbook in which the configuration resides
-# template_source: filename of the ERB configuration template, defaults to <LWRP Name>.conf.erb
+
 define :bitbucket, :action => :enable, :repo => nil, :branch => 'master', :user => 'root' do
 
   include_recipe 'ssh_known_hosts'
