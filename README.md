@@ -7,8 +7,8 @@ Generates SSH keys, submits to the bitbucket API and deploys the repository.
 Requirements
 ------------
 
-Git - Git is required to pull repos from bitbucket
-ssh_known_hosts - Required for generating SSH keys
+* Git - Git is required to pull repos from bitbucket
+* ssh_known_hosts - Required for generating SSH keys
 
 
 Attributes
@@ -27,9 +27,9 @@ Install this cookbook, add dependancy to metadata.rb and in your recipe add `inc
 
 
 #### Attribute Parameters
-`repo` - Name of the bitbucket repository
-`branch` - Branch to checkout
-`user` - Runs as this user (defaults to root) 
+* `repo` - Name of the bitbucket repository
+* `branch` - Branch to checkout
+* `user` - Runs as this user (defaults to root) 
 
 
 #### Examples
