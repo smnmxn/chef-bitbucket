@@ -14,6 +14,7 @@ action :run do
 
   if new_resource.user == 'root'
     home_dir = "/root"
+    Chef::Log.warn("Installing as root")
   else
     home_dir = "/home/#{new_resource.user}"
   end
@@ -43,7 +44,7 @@ action :run do
         end
         block do
           require 'httparty'
-          url = "https://api.bitbucket.org/1.0/repositories/#{node['bitbucket']['user']}/#{new_resource.repo}/deploy-keys"
+          url = "https://api.bitbucket.org/1.0/repositories/meetupcall/#{new_resource.repo}/deploy-keys"
           response = HTTParty.post(url, {
             :basic_auth => {
               :username => node['bitbucket']['user'],
@@ -71,7 +72,7 @@ action :run do
         retries 5
         retry_delay 5
         reference new_resource.branch
-        repository "git@bitbucket.org:#{node['bitbucket']['user']}/#{new_resource.repo}.git"
+        repository "git@bitbucket.org:meetupcall/#{new_resource.repo}.git"
         action :sync
     end
 end
