@@ -38,8 +38,10 @@ action :run do
     
       ruby_block "add_ssh_key_to_bitbucket" do
         unless node['bitbucket'] && node['bitbucket']['deploy_key'] && node['bitbucket']['deploy_key']["#{new_resource.repo}"]
+          Chef::Log.warn("Adding key for #{new_resource.repo}")
           action :create
         else
+          Chef::Log.warn("Key already exists for #{new_resource.repo}")
           action :nothing
         end
         block do
@@ -71,6 +73,7 @@ action :run do
         user new_resource.user
         retries 5
         retry_delay 5
+        timeout 1200
         reference new_resource.branch
         repository "git@bitbucket.org:meetupcall/#{new_resource.repo}.git"
         action :sync
